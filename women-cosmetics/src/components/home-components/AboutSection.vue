@@ -8,7 +8,7 @@
 
          <section class="lg:mx-auto mx-5 lg:my-[4%]  my-[10%] lg:w-2/5  min-h-[110vh]  flex  flex-col justify-start items-start gap-[50px] lg:gap-[70px]">
 
-            <h1 class="uppercase text-[30px] md:text-[40px] leading-[40px] md:leading-[60px] lg:text-[9em] font-thin">
+            <h1 class="uppercase whitespace-nowrap text-[30px] md:text-[40px] leading-[40px] md:leading-[60px] lg:text-[8.2em] font-thin">
                 about us
             </h1>
 
