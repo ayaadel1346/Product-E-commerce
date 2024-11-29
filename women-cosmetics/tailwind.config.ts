@@ -9,7 +9,8 @@ export default {
       colors: {
         primary: "var(--primary-color)",
         secondary: "var(--gray-color)",
-        darkGray: "var(--dark-gray:)",
+        darkGray: "var(--dark-gray)",
+        lightGray:"var(--light-gray)",
         lightBlue: "var(--light-blue)",
         darkBlue: "var(--dark-blue)"
       },

@@ -1,6 +1,6 @@
 <template>
     
-    <nav class="bg-white  lg:sticky fixed  border-b-[1px]  border-darkGray  top-0  py-7  w-full min-h-[15vh]  lg:min-h-[25vh]  flex  flex-col  gap-7">
+    <nav class="bg-white z-50  lg:sticky fixed  border-b-[1px]  border-darkGray  top-0  py-7  w-full min-h-[15vh]  lg:min-h-[25vh]  flex  flex-col  gap-7">
 
       <section class="w-full  px-5  md:px-10  flex  justify-between  items-center">
       
@@ -58,16 +58,16 @@
          v-for="(link,index) in links" 
          :key="index" 
          :to="link.src"
-         class="mr-5  hover:text-darkBlue  text-[18px]  md:text-[20px]  leading-[40px]  font-sans">
+         class="mr-5  hover:text-darkBlue  transition-all  duration-300  ease-in-out  text-[18px]  md:text-[20px]  leading-[40px]  font-sans">
             {{ link.linkName }}
          </RouterLink>
         </aside>
 
 
         <aside class="flex justify-around items-center gap-3">
-           <Snap/>
-          <Instagram/>
-          <Facebook/>
+             <RouterLink class="links-up" to="/"><Snap/></RouterLink>
+              <RouterLink  class="links-up" to="/"><Instagram/></RouterLink>
+              <RouterLink  class="links-up" to="/"><Facebook/></RouterLink>
         </aside>
 
       </section>
@@ -99,6 +99,12 @@
                 class="{'text-[20px]  hover:text-darkBlue  leading-[40px] mt-3  font-semibold  font-sans'}">
                 {{ link.linkName }}
             </RouterLink>
+
+            <aside class="flex justify-around items-center gap-3">
+              <RouterLink class="links-up" to="/"><Snap/></RouterLink>
+              <RouterLink class="links-up" to="/"><Instagram/></RouterLink>
+              <RouterLink class="links-up" to="/"><Facebook/></RouterLink>
+            </aside>
 
         </div>
 

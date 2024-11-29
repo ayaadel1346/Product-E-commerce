@@ -7,6 +7,50 @@
     --primary-color:#000;
     --gray-color:#848484;
     --dark-gray:#2d2c2c;
-    --light-blue:rgb(138, 185, 205);
+    --light-blue:rgba(172, 216, 232, 0.36);
     --dark-blue:rgb(112, 182, 211);
 }
+
+
+.links-up{
+   @apply hover:-translate-y-1 transition-all duration-300 ease-out
+}
+
+body{
+    font-family: "League Spartan", sans-serif;
+}
+
+
+.button-reverse{
+    position: relative;
+    overflow: hidden;
+  }
+
+  
+.button-reverse:hover::before,
+.button-reverse:hover::after {
+      transform: translateX(0);
+      background-color: white;
+}
+  
+
+.button-reverse::before,
+.button-reverse::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      transition: transform 0.6s ease-out;
+    }
+  
+.button-reverse::before {
+      transform: translateX(100%);
+}
+  
+.button-reverse::after {
+      transform: translateX(-100%);
+}
+  
+  
