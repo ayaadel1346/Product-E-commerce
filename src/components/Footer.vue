@@ -16,7 +16,7 @@
                  v-for="(link,index) in links" 
                  :key="index" 
                  :to="link.src"
-                 class="lg:text-[20px]  hover:text-darkLink  transition-all  duration-300  ease-in-out  text-[16px]  font-medium">
+                 class="lg:text-[17px]  hover:text-darkLink  transition-all  duration-300  ease-in-out  text-[16px]  font-medium">
                  {{ link.name }}
                </RouterLink>
               </div>
@@ -30,7 +30,7 @@
               </h1>
 
               <div class="flex flex-col gap-3">
-                <RouterLink class="lg:text-[20px] hover:text-darkLink transition-all duration-300 ease-in-out text-[16px] font-medium" v-for="(link,index) in supportLinks" :key="index" :to="link.src">
+                <RouterLink class="lg:text-[17px] hover:text-darkLink transition-all duration-300 ease-in-out text-[16px] font-medium" v-for="(link,index) in supportLinks" :key="index" :to="link.src">
                  {{ link.name }}
               </RouterLink>
               </div>
@@ -54,13 +54,13 @@
               <div class="flex flex-col gap-3">
                 <RouterLink 
                  :to="`tel:${homeData.footer.phone}`"
-                 class="lg:text-[20px] hover:text-darkLink transition-all duration-300 ease-in-out text-[16px] font-medium">
+                 class="lg:text-[17px] hover:text-darkLink transition-all duration-300 ease-in-out text-[16px] font-medium">
                   {{homeData.footer.phone}}
                 </RouterLink>
 
                 <RouterLink 
                  :to="`mailto:${homeData.footer.email}`"
-                 class="lg:text-[20px] hover:text-darkLink transition-all duration-300 ease-in-out text-[16px] font-medium">
+                 class="lg:text-[17px] hover:text-darkLink transition-all duration-300 ease-in-out text-[16px] font-medium">
                   {{homeData.footer.email}}
                 </RouterLink>
 
@@ -88,7 +88,7 @@
 
 
             
-            <div class="w-full  lg:w-3/12  lg:px-3  flex  flex-col  justify-start  gap-5">
+            <div class="w-full  lg:w-3/12  lg:px-10  flex  flex-col  justify-start  gap-5">
               <h1 class="lg:text-[25px]  text-[20px]  leading-[30px] font-semibold">
                 Subscribe For More
               </h1>

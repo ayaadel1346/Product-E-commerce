@@ -9,7 +9,7 @@
         loop
         playsinline
         ref="videoElement"
-        class="w-full h-[60vh] lg:min-h-[100vh] object-cover transition-opacity duration-1000 opacity-100"
+        class="w-full h-[60vh] lg:min-h-[100vh] lg:h-full object-cover transition-opacity duration-1000 opacity-100"
       >
         <source :src="homeData.header.video" type="video/mp4" />
         <source :src="homeData.header.video" type="video/m4v" />
@@ -37,12 +37,14 @@
       </div>
     </section>
 
+
+
     <aside class="w-full h-full hidden lg:block relative">
       <img
         v-if="imageLoaded"
         :src="imageSrc"
         alt="right image"
-        class="w-full h-[60vh] lg:min-h-[100vh] object-cover transition-opacity duration-1000 opacity-100"
+        class="w-full h-[60vh] lg:min-h-[100vh] lg:h-full object-cover transition-opacity duration-1000 opacity-100"
       />
 
       <BlurhashImg
@@ -70,16 +72,17 @@ const checkIfMediaLoaded = () => {
   if (homeData.value.header.video && homeData.value.header.video !== "") {
     const video = document.createElement("video");
     video.src = homeData.value.header.video;
-    video.onloadstart = () => {
+    video.addEventListener('canplaythrough', () => {
       setTimeout(() => {
-        videoLoaded.value = true;
-      }, 200); 
-    };
+        videoLoaded.value = true;  
+      }, 200);
+    });
     video.onerror = () => {
       videoLoaded.value = false;
     };
   }
 
+  
   if (homeData.value.header.img && homeData.value.header.img !== "") {
     imageSrc.value = homeData.value.header.img;
     const img = new Image();
@@ -87,7 +90,7 @@ const checkIfMediaLoaded = () => {
     img.onload = () => {
       setTimeout(() => {
         imageLoaded.value = true;
-      }, 200); 
+      }, 200);
     };
     img.onerror = () => {
       imageLoaded.value = false;
