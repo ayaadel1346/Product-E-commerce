@@ -1,43 +1,46 @@
 <template>
-
- <main class="min-h-[100vh] my-[15vh]  md:my-[8vh]  lg:my-0  container-fluid  flex  lg:flex-row  flex-col  justify-center  items-center">
-
-    <aside class="lg:w-1/3 w-full h-full">
+  <main class="min-h-[100vh] overflow-x-hidden my-[15vh] md:my-[8vh] lg:my-0 container-fluid grid grid-cols-1 lg:grid-cols-3">
+    <aside class="w-full h-full">
      
-        <img 
-         src="@/assets/images/image 26.webp"
-         alt="left image"
-         class="w-full h-[60vh]  lg:h-[100vh]  object-cover"/>
+      <video autoplay muted loop class="w-full h-[60vh] lg:min-h-[100vh] object-cover" playsinline>
+ 
+  <source :src="homeData.header.video" type="video/mp4" />
+  <source :src="homeData.header.video" type="video/m4v" />
+  <p>Your browser does not support the video tag.</p>
+</video>
 
     </aside>
 
-
-    <section class="lg:w-1/3 w-full flex-col gap-10 justify-center items-center">
-
-        <h1 class="mt-6 md:mt-10 lg:mt-0 md:text-[40px]  lg:p-1 p-5 font-semibold text-[30px] md:leading-[70px] leading-[50px] text-center">
-           <span class="lg:block"> Enhancing everything </span> <span class="lg:block">related to women&apos;s</span> charm and allure is <span class="lg:block">our mission</span>
+    <section class="w-full flex justify-center items-center">
+      <div class="flex-col gap-10 justify-center items-center w-full">
+        <h1
+          class="mt-6 md:mt-10 lg:mt-0 md:text-[40px] lg:p-5 p-5 font-semibold text-[30px] md:leading-[70px] leading-[50px] text-center"
+        >
+          {{homeData.header.desc }}
         </h1>
 
-        <RouterLink 
-         to="/contact"
-         class="button-reverse border-[1px] border-transparent hover:border-lightBlue z-10  mx-auto  md:w-[200px]  mt-10  w-[150px] flex justify-center items-center  py-4  px-3  
-                text-[16px] md:text-[22px]  rounded-[30px] bg-lightBlue">
-          <span class="z-10">  Contact Us</span>
+        <RouterLink
+          :to="homeData.header.btn_link"
+          class="button-reverse border-[1px] border-transparent hover:border-lightButton z-10 mx-auto md:w-[200px] mt-10 w-[150px] flex justify-center items-center py-4 px-3 text-[16px] md:text-[22px] rounded-[30px] bg-lightButton"
+        >
+          <span class="z-10">{{ homeData.header.btn_text }}</span>
         </RouterLink>
-        
-
+      </div>
     </section>
-    
 
-    <aside class="lg:w-1/3 w-full h-full hidden lg:block">
-
-        <img 
-         src="@/assets/images/image 25.webp"
-         alt="right image"
-         class="w-full h-[60vh]  lg:h-[100vh]  object-cover"/>
-
+    <aside class="w-full h-full hidden lg:block">
+      <img
+        :src="homeData.header.img"
+        alt="right image"
+        class="w-full h-[60vh] lg:min-h-[100vh] object-cover"
+      />
     </aside>
-
- </main>
-
+  </main>
 </template>
+
+<script setup lang="ts">
+import { useHomeStore } from "../../stores/HeaderStore";
+
+const { homeData } = useHomeStore();
+
+</script>

@@ -58,7 +58,7 @@
          v-for="(link,index) in links" 
          :key="index" 
          :to="link.src"
-         class="mr-5  hover:text-darkBlue  transition-all  duration-300  ease-in-out  text-[18px]  md:text-[20px]  leading-[40px]  font-sans">
+         class="mr-5  hover:text-darkLink  transition-all  duration-300  ease-in-out  text-[18px]  md:text-[20px]  leading-[40px]  font-sans">
             {{ link.linkName }}
          </RouterLink>
         </aside>

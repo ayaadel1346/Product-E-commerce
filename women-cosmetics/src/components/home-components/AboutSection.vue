@@ -1,21 +1,19 @@
 <template>
-    <main class="container-fluid  min-h-[110vh] lg:mt-[8%] mt-3 flex lg:flex-row flex-col lg:gap-0 gap-5 items-start">
+    <main class="container-fluid  min-h-[100vh] overflow-x-hidden  lg:mt-[8%]  mt-3  grid  grid-col  lg:grid-cols-2">
 
         <img 
-         src="@/assets/images/image 44.webp"
+         :src="homeData.about.img"
          alt="left about image"
-         class="w-full lg:w-2/5 h-[50vh] lg:min-h-[110vh]  object-cover"/>
+         class="w-full  lg:w-5/6  h-[50vh]  lg:h-full  lg:min-h-[100vh]  object-cover"/>
 
-         <section class="lg:mx-auto mx-5 lg:my-[4%]  my-[10%] lg:w-2/5  min-h-[110vh]  flex  flex-col justify-start items-start gap-[50px] lg:gap-[70px]">
+         <section class="lg:mx-auto  mx-5  lg:py-[5%]  py-[10%]  w-full  h-full  min-h-[100vh]  flex  flex-col justify-start items-start gap-[40px] lg:gap-[70px]">
 
-            <h1 class="uppercase whitespace-nowrap text-[30px] md:text-[40px] leading-[40px] md:leading-[60px] lg:text-[8.2em] font-thin">
-                about us
+            <h1 class="uppercase whitespace-nowrap text-[30px] md:text-[40px] leading-[20px] md:leading-[60px] lg:text-[8.2em] font-thin">
+               {{ homeData.about.title }}
             </h1>
 
-            <p class="lg:mt-5 text-[16px] md:text-[22px] leading-[35px]">
-                From Ancient Times To The Present Day. Our Journey Continues To Bring The Best To The Modern Woman.
-                We Draw Inspiration From Our Rich Heritage And Blend It With Contemporary Touches To Offer You A Diverse Range 
-                Of Products That Reflect The Elegance And Sophistication Of The Past With A Modern Twist.
+            <p class="lg:mt-5 pr-[50px] text-[16px] md:text-[20px] leading-[35px]">
+                {{ homeData.about.desc }}   
             </p>
 
             <div class="w-full">
@@ -24,13 +22,13 @@
                     values
                 </h2>
 
-                <ul class="flex flex-col gap-6 mt-7">
+                <ul class="flex flex-col gap-6 mt-7  pr-[50px]">
 
                     <li 
-                     v-for="(value,index) in values" 
+                     v-for="(value,index) in homeData.about.values" 
                      :key="index"
-                     class="text-[16px]  md:text-[22px]  capitalize  w-full p-3  rounded-[10px]  bg-lightGray">
-                     {{ value }}
+                     class="text-[16px]   md:text-[22px]  capitalize  w-full p-3  rounded-[10px]  bg-lightColor">
+                     {{ value.title}}
                     </li>
 
                 </ul>
@@ -45,6 +43,10 @@
 
 
 <script setup lang="ts">
+import { useHomeStore } from "../../stores/HeaderStore";
+
+const { homeData } = useHomeStore();
+
 const values :string[] =[
 'sustainability',
 "women's empowerment",

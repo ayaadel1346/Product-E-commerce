@@ -5,11 +5,12 @@
 
 :root{
     --primary-color:#000;
-    --gray-color:#848484;
-    --light-gray:rgba(228, 226, 226, 0.625);
-    --dark-gray:#bbb7b7;
-    --light-blue:rgba(172, 216, 232, 0.36);
-    --dark-blue:rgb(112, 182, 211);
+    --gray-color:#727171;
+    --light-color:rgba(238, 170, 170, 0.279);
+    --dark-gray:#918e8e;
+    --light-button:#f6c8c8dc;
+    --light-container:#ecc3c39c;
+    --dark-link:#ed8585;
 }
 
 

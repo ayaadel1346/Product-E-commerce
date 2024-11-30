@@ -10,9 +10,10 @@ export default {
         primary: "var(--primary-color)",
         secondary: "var(--gray-color)",
         darkGray: "var(--dark-gray)",
-        lightGray:"var(--light-gray)",
-        lightBlue: "var(--light-blue)",
-        darkBlue: "var(--dark-blue)"
+        lightColor:"var(--light-color)",
+        lightButton: "var(--light-button)",
+        darkLink: "var(--dark-link)",
+        lightContainer: "var(--light-container)"
       },
     },
     screens: {
