@@ -1,52 +1,73 @@
 <template>
+  <main
+    v-for="(brand, index) in homeData.brands"
+    :key="index"
+    class="py-10 px-7 relative bg-white  min-h-[130vh]  md:min-h-[105vh] lg:min-h-[85vh] rounded-[15px]  w-full">
 
-    <main v-for="(brand,index) in homeData.brands" :key="index" class="py-10 px-7 relative bg-white min-h-[80vh] rounded-[15px] w-full ">
-        
-
-        <h1 class="capitalize font-semibold text-[20px] md:text-[30px]">
-            {{ brand.title }} product showcase
-        </h1>
-
-
-        <ul class="my-5 flex lg:text-[25px] text-gray-500">
-          <li
-          v-for="(category,index) in brand.categories" :key="category.id"  
-          @click="allHomeData.fetchCategoryData(category.id)" 
-          class="mr-10 transition-all duration-300 ease-in-out  hover:text-darkLink cursor-pointer">
-             {{ category.title }}
-          </li>
-        </ul>
+    <h1 class="capitalize  font-semibold  text-[20px]  md:text-[30px]">
+      {{ brand.title }} product showcase
+    </h1>
 
 
-       <div class="mt-10 lg:block hidden">
-        <swiper
-        :modules="modules"
-        :slides-per-view="5"
-        :space-between="30"
-        navigation
-        @swiper="onSwiper"
-        @slideChange="onSlideChange"
-        >
+    <ul class="my-6 flex  lg:flex-row flex-col  gap-5  text-[20px]  lg:text-[20px]  text-gray-500">
+      <li
+        v-for="(category, index) in brand.categories"
+        :key="category.id"
+        @click="[allHomeData.fetchCategoryData(category.id) , setClickedLink(category.id)]"
+        :class="[clickedLink === category.id?'bg-lightColor rounded-[20px] text-black  px-5':'','mr-10 py-1  transition-all duration-300 ease-in-out hover:text-black cursor-pointer']">
+        {{ category.title }}
+      </li>
+    </ul>
 
-    
-        <swiper-slide v-for="(category,index) in categoryData"  :key="categoryData.id" >
-          <div class="relative w-[100%] shadow-md my-1 rounded-[15px] p-2">
-            <img 
+
+    <section
+      class="mt-10 h-full flex justify-center items-center min-h-[40vh]"
+      v-if="categoryData.length === 0 && !categoryLoader">
+      <h1 class="text-[20px] md:text-[30px] font-semibold">
+        No Available Products😵
+      </h1>
+    </section>
+
+
+    <section
+      class="mt-10 h-full flex justify-center items-center min-h-[40vh]"
+      v-else-if="categoryLoader">
+      <h1 class="text-[20px] md:text-[30px] font-semibold">Loading .....</h1>
+    </section>
+
+
+    <swiper
+      v-else
+      class="mt-5"
+      :modules="modules"
+      :breakpoints="breakpoints"
+      :space-between="30"
+      navigation
+      @swiper="onSwiper"
+      @slideChange="onSlideChange">
+
+      <swiper-slide
+        v-for="(category, index) in categoryData"
+        :key="category.id">
+
+        <div class="relative w-[100%] shadow-md  my-1  rounded-[15px]  p-2">
+
+          <img
             :src="category.img"
-            alt=" product image"
-            class="w-[90%] z-0 py-10 mx-auto rounded-[15px] h-[40vh] "/>
+            alt="product image"
+            class="md:w-[90%] w-[95%] z-0 py-10 mx-auto rounded-[15px] h-[40vh]"/>
 
-            <h1 class="absolute z-10 text-[19px] font-medium w-full bottom-[1%] left-[5%]  pr-[5%]">{{ category.name }} </h1>
-            
-          </div>
-        </swiper-slide>
-    
+          <h1 class="absolute z-10 text-[19px] font-medium w-full bottom-[1%] left-[5%] pr-[5%]">
+            {{ category.name }}
+          </h1>
 
-        
-     </swiper>
-       </div>
+        </div>
 
- </main>
+      </swiper-slide>
+
+    </swiper>
+
+  </main>
 
 </template>
 
@@ -62,12 +83,30 @@ import { useHomeStore } from "../../stores/HeaderStore";
 import { onMounted, ref } from 'vue';
 import { storeToRefs } from 'pinia';
 
+
 const allHomeData=useHomeStore();
-const { homeData ,categoryData} = storeToRefs(allHomeData)
-
-
+const { homeData ,categoryData , categoryLoader} = storeToRefs(allHomeData);
+const clickedLink=ref(1);
 const modules = [Navigation, Pagination, Scrollbar, A11y];
+const breakpoints = {
+  1024: {
+    slidesPerView: 4, 
+  },
+  768: {
+    slidesPerView: 2,
+  },
+  0: {
+    slidesPerView: 1,
+  },
+};
+
+
+
+const setClickedLink = (id)=>{
+  clickedLink.value=id;
+}
 </script>
+
 
 
 <style>
@@ -82,14 +121,13 @@ const modules = [Navigation, Pagination, Scrollbar, A11y];
     display: block;
 }
 
-
 .swiper-button-prev, .swiper-button-next {
     position: absolute !important;
     background-color: var( --dark-link) !important;
     width: 45px; 
     height: 45px; 
     border-radius: 50%;
-    top:90% !important;
+    top:93% !important;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -109,7 +147,7 @@ const modules = [Navigation, Pagination, Scrollbar, A11y];
 
 
 .swiper-button-next{
-    left: 10% !important;
+    left: 12% !important;
 }
 
 

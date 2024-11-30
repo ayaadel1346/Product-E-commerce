@@ -3,6 +3,7 @@ import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import axios from '../utils/axios';
 
+
 export const useHomeStore = defineStore('home', () => {
     
   const homeData = ref({

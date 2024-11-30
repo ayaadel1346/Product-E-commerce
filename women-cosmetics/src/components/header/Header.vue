@@ -10,7 +10,7 @@
           class="w-[150px] md:w-[220px]"/>
   
    
-        <div class="flex items-center justify-center relative">
+        <div class="min-w-[150px] flex items-center justify-center relative">
 
           <World />
   
