@@ -1,60 +1,87 @@
 <template>
-
-  <main class="min-h-[100vh]  overflow-x-hidden  my-[15vh]  md:my-[8vh]  lg:my-0  container-fluid  grid  grid-cols-1  lg:grid-cols-3">
+  <main class="min-h-[100vh] overflow-x-hidden my-[15vh] md:my-[8vh] lg:my-0 container-fluid grid grid-cols-1 lg:grid-cols-3">
     
-    <aside class="w-full h-full">
-     
+   
+    <aside class="w-full h-full relative">
       <video
-       autoplay
-       muted 
-       loop 
-       playsinline
-       class="w-full h-[60vh] lg:min-h-[100vh] object-cover">
+        v-if="videoLoading"
+        autoplay
+        muted
+        loop
+        playsinline
+        ref="videoElement"
+        class="w-full h-[60vh] lg:min-h-[100vh] object-cover"
+      >
         <source :src="homeData.header.video" type="video/mp4" />
         <source :src="homeData.header.video" type="video/m4v" />
         <p>Your browser does not support the video tag.</p>
       </video>
 
+      <Blurhashimg
+        v-if="!videoLoading"
+        hash="LPJ**a-=RjM{~qIUoft7RjofM_t7"
+        class="w-full h-[60vh] lg:min-h-[100vh] object-cover"
+      />
     </aside>
 
-
+  
     <section class="w-full flex justify-center items-center">
-
       <div class="flex-col gap-10 justify-center items-center w-full">
-
-        <h1
-          class="mt-6 md:mt-10 lg:mt-0 md:text-[40px] lg:p-5 p-5 font-semibold text-[30px] md:leading-[70px] leading-[50px] text-center">
-          {{homeData.header.desc }}
+        <h1 class="mt-6 md:mt-10 lg:mt-0 md:text-[40px] lg:p-5 p-5 font-semibold text-[30px] md:leading-[70px] leading-[50px] text-center">
+          {{ homeData.header.desc }}
         </h1>
-
         <RouterLink
           :to="homeData.header.btn_link"
-          class="button-reverse  border-[1px]  border-transparent  hover:border-lightButton  z-10  mx-auto  md:w-[200px]  mt-10  w-[150px]
-                 flex  justify-center  items-center  py-4  px-3  text-[16px]  md:text-[22px]  rounded-[30px]  bg-lightButton">
+          class="button-reverse border-[1px] border-transparent hover:border-lightButton z-10 mx-auto md:w-[200px] mt-10 w-[150px] flex justify-center items-center py-4 px-3 text-[16px] md:text-[22px] rounded-[30px] bg-lightButton">
           <span class="z-10">{{ homeData.header.btn_text }}</span>
         </RouterLink>
-
       </div>
-
     </section>
 
-
-    <aside class="w-full h-full hidden lg:block">
+   
+    <aside class="w-full h-full hidden lg:block relative">
       <img
+        v-if="imageLoaded"
         :src="homeData.header.img"
         alt="right image"
+        class="w-full h-[60vh] lg:min-h-[100vh] object-cover"
+      />
+
+      <Blurhashimg
+        v-if="!imageLoaded"
+        hash="L9OLr]~BXlI@JPx]tSDO%ggN_2OX"
         class="w-full h-[60vh] lg:min-h-[100vh] object-cover"
       />
     </aside>
 
   </main>
-
 </template>
 
-
 <script setup lang="ts">
-import { toRefs } from "vue";
+import { ref, toRefs, onMounted } from 'vue';
 import { useHomeStore } from "../../stores/HeaderStore";
+import Blurhashimg from "@/components/Blurhashimg.vue";
 
+
+const videoLoading = ref(false);
+const imageLoaded = ref(false);
 const { homeData } = toRefs(useHomeStore());
+
+
+const checkIfMediaLoaded = () => {
+ 
+  if (homeData.value.header.video && homeData.value.header.video !== "") {
+    videoLoading.value = true;  
+  }
+
+  if (homeData.value.header.img && homeData.value.header.img !== "") {
+    imageLoaded.value = true; 
+  }
+};
+
+
+onMounted(() => {
+  checkIfMediaLoaded();
+});
+
 </script>
