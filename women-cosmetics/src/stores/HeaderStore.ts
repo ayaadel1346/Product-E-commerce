@@ -56,11 +56,7 @@ export const useHomeStore = defineStore('home', () => {
     img:''
   })
 
-
-  
-
   const loaderHome = ref(true);
-
   const categoryLoader=ref(true);
 
 
