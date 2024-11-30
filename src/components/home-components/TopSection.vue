@@ -17,7 +17,7 @@
         <p>Your browser does not support the video tag.</p>
       </video>
 
-      <Blurhashimg
+      <BlurhashImg
         v-if="!videoLoading"
         hash="LPJ**a-=RjM{~qIUoft7RjofM_t7"
         class="w-full h-[60vh] lg:min-h-[100vh] object-cover"
@@ -47,7 +47,7 @@
         class="w-full h-[60vh] lg:min-h-[100vh] object-cover"
       />
 
-      <Blurhashimg
+      <BlurhashImg
         v-if="!imageLoaded"
         hash="L9OLr]~BXlI@JPx]tSDO%ggN_2OX"
         class="w-full h-[60vh] lg:min-h-[100vh] object-cover"
@@ -60,7 +60,7 @@
 <script setup lang="ts">
 import { ref, toRefs, onMounted } from 'vue';
 import { useHomeStore } from "../../stores/HeaderStore";
-import Blurhashimg from "@/components/Blurhashimg.vue";
+import BlurhashImg from "@/components/BlurhashImg.vue";
 
 
 const videoLoading = ref(false);
