@@ -1,10 +1,92 @@
-export interface Data {
-    header: Header;
-    about: About;
-    brands: Brand[];
-    contact: Contact;
-    footer: Footer;
-}
+export interface HomeResponseData {
+    data: {
+      header: {
+        desc: string;
+        img: string;
+        video: string;
+        btn_text: string;
+        btn_link: string;
+      };
+      about: {
+        title: string;
+        desc: string;
+        img: string;
+        values: {
+          id: number;
+          title: string;
+        }[];
+      };
+      brands: {
+        id: number;
+        title: string;
+        desc: string;
+        img: string;
+        categories: string[];
+      }[];
+      contact: {
+        advertisement: string;
+      };
+      footer: {
+        logo: string;
+        phone: string;
+        email: string;
+        socials: {
+          facebook: string;
+          twitter: string;
+          instagram: string;
+          snapchat: string;
+        };
+      };
+    };
+  }
+  
+  export interface CategoryResponseData {
+    data: {
+      id: number;
+      name: string;
+      img: string;
+    };
+  }
+  
+  export interface PageData{
+    header: {
+        desc: string;
+        img: string;
+        video: string;
+        btn_text: string;
+        btn_link: string;
+      };
+      about: {
+        title: string;
+        desc: string;
+        img: string;
+        values: {
+          id: number;
+          title: string;
+        }[];
+      };
+      brands: {
+        id: number;
+        title: string;
+        desc: string;
+        img: string;
+        categories: string[];
+      }[];
+      contact: {
+        advertisement: string;
+      };
+      footer: {
+        logo: string;
+        phone: string;
+        email: string;
+        socials: {
+          facebook: string;
+          twitter: string;
+          instagram: string;
+          snapchat: string;
+        };
+      };
+  }
 
 export interface Header {
     desc: string;

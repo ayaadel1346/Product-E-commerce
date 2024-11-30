@@ -1,4 +1,4 @@
-import { CategoryData } from './../utils/types';
+import { CategoryData, CategoryResponseData, HomeResponseData, PageData } from './../utils/types';
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import axios from '../utils/axios';
@@ -6,7 +6,7 @@ import axios from '../utils/axios';
 
 export const useHomeStore = defineStore('home', () => {
     
-  const homeData = ref({
+  const homeData = ref<PageData>({
     header: {
       desc: "",
       img: "",
@@ -63,7 +63,7 @@ export const useHomeStore = defineStore('home', () => {
 
   const fetchData = async () => {  
     try {
-      const responseData = await axios.get('/testing');
+      const responseData = await axios.get<HomeResponseData>('/testing');
       homeData.value = responseData.data.data;
       loaderHome.value = false;
     } catch (err) {
@@ -73,7 +73,7 @@ export const useHomeStore = defineStore('home', () => {
 
   const fetchCategoryData = async (id:number) => {  
     try {
-      const responseData = await axios.get(`/categories/${id}/products`);
+      const responseData = await axios.get<CategoryResponseData>(`/categories/${id}/products`);
       categoryData.value = responseData.data.data;
       categoryLoader.value = false;
     } catch (err) {
