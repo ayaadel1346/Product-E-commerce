@@ -19,7 +19,7 @@
       <BlurhashImg
         v-if="!videoLoaded"
         hash="LPJ**a-=RjM{~qIUoft7RjofM_t7"
-        class="w-full h-[60vh] lg:min-h-[100vh] object-cover transition-opacity duration-1000 opacity-100 ease-out"
+        class="w-full h-[60vh] lg:min-h-[100vh] lg:h-full object-cover transition-opacity duration-1000 opacity-100 ease-out"
         :class="{'opacity-0': videoLoaded}"
       />
     </aside>
@@ -50,7 +50,7 @@
       <BlurhashImg
         v-if="!imageLoaded"
         hash="L9OLr]~BXlI@JPx]tSDO%ggN_2OX"
-        class="w-full h-[60vh] lg:min-h-[100vh] object-cover transition-opacity duration-1000 opacity-100 ease-out"
+        class="w-full h-[60vh] lg:min-h-[100vh] lg:h-full object-cover transition-opacity duration-1000 opacity-100 ease-out"
         :class="{'opacity-0': imageLoaded}"
       />
     </aside>
