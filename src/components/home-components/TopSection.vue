@@ -1,5 +1,6 @@
 <template>
   <main class="min-h-[100vh] overflow-x-hidden my-[15vh] md:my-[8vh] lg:my-0 container-fluid grid grid-cols-1 lg:grid-cols-3">
+    
     <aside class="w-full h-full relative">
       <video
         v-if="videoLoaded"
@@ -8,7 +9,8 @@
         loop
         playsinline
         ref="videoElement"
-        class="w-full h-[60vh] lg:min-h-[100vh] object-cover">
+        class="w-full h-[60vh] lg:min-h-[100vh] object-cover transition-opacity duration-1000 opacity-100"
+      >
         <source :src="homeData.header.video" type="video/mp4" />
         <source :src="homeData.header.video" type="video/m4v" />
         <p>Your browser does not support the video tag.</p>
@@ -17,11 +19,10 @@
       <BlurhashImg
         v-if="!videoLoaded"
         hash="LPJ**a-=RjM{~qIUoft7RjofM_t7"
-        class="w-full h-[60vh] lg:min-h-[100vh] object-cover transition-opacity duration-1000 opacity-100"
+        class="w-full h-[60vh] lg:min-h-[100vh] object-cover transition-opacity duration-1000 opacity-100 ease-out"
         :class="{'opacity-0': videoLoaded}"
       />
     </aside>
-
 
     <section class="w-full flex justify-center items-center">
       <div class="flex-col gap-10 justify-center items-center w-full">
@@ -36,25 +37,22 @@
       </div>
     </section>
 
-
     <aside class="w-full h-full hidden lg:block relative">
       <img
         v-if="imageLoaded"
         :src="imageSrc"
         alt="right image"
-        class="w-full h-[60vh] lg:min-h-[100vh] object-cover"
+        class="w-full h-[60vh] lg:min-h-[100vh] object-cover transition-opacity duration-1000 opacity-100"
       />
 
       <BlurhashImg
         v-if="!imageLoaded"
         hash="L9OLr]~BXlI@JPx]tSDO%ggN_2OX"
-        class="w-full h-[60vh] lg:min-h-[100vh] object-cover transition-opacity duration-1000 opacity-100"
+        class="w-full h-[60vh] lg:min-h-[100vh] object-cover transition-opacity duration-1000 opacity-100 ease-out"
         :class="{'opacity-0': imageLoaded}"
       />
     </aside>
-
   </main>
-  
 </template>
 
 <script setup lang="ts">
@@ -73,7 +71,9 @@ const checkIfMediaLoaded = () => {
     const video = document.createElement("video");
     video.src = homeData.value.header.video;
     video.onloadstart = () => {
-      videoLoaded.value = true;
+      setTimeout(() => {
+        videoLoaded.value = true;
+      }, 200); 
     };
     video.onerror = () => {
       videoLoaded.value = false;
@@ -85,7 +85,9 @@ const checkIfMediaLoaded = () => {
     const img = new Image();
     img.src = homeData.value.header.img;
     img.onload = () => {
-      imageLoaded.value = true;
+      setTimeout(() => {
+        imageLoaded.value = true;
+      }, 200); 
     };
     img.onerror = () => {
       imageLoaded.value = false;
