@@ -52,17 +52,17 @@
               </h1>
 
               <div class="flex flex-col gap-3">
-                <RouterLink 
-                 :to="`tel:${homeData.footer.phone}`"
+                <a 
+                 :href="`tel:${homeData.footer.phone}`"
                  class="lg:text-[17px] hover:text-darkLink transition-all duration-300 ease-in-out text-[16px] font-medium">
-                  {{homeData.footer.phone}}
-                </RouterLink>
+                   {{homeData.footer.phone}}
+                </a>
 
-                <RouterLink 
-                 :to="`mailto:${homeData.footer.email}`"
+                <a 
+                 :href="`mailto:${homeData.footer.email}`"
                  class="lg:text-[17px] hover:text-darkLink transition-all duration-300 ease-in-out text-[16px] font-medium">
                   {{homeData.footer.email}}
-                </RouterLink>
+                </a>
 
                 <section class="flex justify-start items-center gap-3">
                     <RouterLink 
@@ -116,7 +116,7 @@
         </section>
 
 
-        <section class=" flex justify-end items-center py-5 px-10">
+        <section class=" flex lg:justify-end  justify-center  items-center  py-5  lg:px-10">
            
             <h1 
              class="capitalize text-xl">
@@ -152,30 +152,30 @@ const links :{src:string,name:string}[]=[
     name:'Home'
 },
 {
-    src:'#about',
+    src:'/',
     name:'About Us'
 },
 {
-    src:'#service',
+    src:'/',
     name:'Our Service'
 },
 {
-    src:'#products',
+    src:'/',
     name:'Our Product'
 }
 ] 
 
 const supportLinks:{src:string,name:string}[]=[
     {
-        src:'/faq',
+        src:'/',
         name:'FAQS'
     },
     {
-        src:'/terms',
+        src:'/',
         name:'Terms & Conditions'
     },
     {
-        src:'/privacy',
+        src:'/',
         name:'Privacy policy'
     },
 ]
