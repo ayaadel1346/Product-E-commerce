@@ -15,7 +15,7 @@
           <World />
   
           <button
-            class="flex items-center rounded-md text-[16px] md:text-[19px] py-2 px-3"
+            class="flex items-center  min-w-[70px] min-h-[50px] rounded-md text-[16px] md:text-[19px] py-2 px-3"
             @click="toggleDropdown">
 
             <span>{{ selectedLang }}</span>
@@ -27,7 +27,7 @@
           
           <ul
             v-show="dropdownOpen"
-            class="absolute  bottom-0  text-sm  bg-white border  rounded-md  shadow-lg  w-[200px]  z-10">
+            class="absolute  bottom-[-70px]  text-sm  bg-white border  rounded-md  shadow-lg  min-w-[150px] min-h-[80px]  z-10">
             
             <li
               class="px-4 py-2  cursor-pointer hover:bg-gray-100"
@@ -37,7 +37,7 @@
             
             <li
               class="px-4 py-2  cursor-pointer hover:bg-gray-100"
-              @click="selectLang('ar')">
+              @click="selectLang('AR')">
               Arabic
             </li>
 
@@ -117,19 +117,21 @@
   
 
 <script setup lang="ts">
-  import { ref } from 'vue';
+  import { computed, ref } from 'vue';
   import World from '../icons/World.vue';
   import DownArrow from '../icons/DownArrow.vue';
   import Instagram from '../icons/Instagram.vue';
   import Facebook from '../icons/Facebook.vue';
   import Snap from '../icons/Snap.vue';
   import NavIcon from '../icons/NavIcon.vue';
+  import { useI18n } from 'vue-i18n';
   
 
   
   const selectedLang = ref<string>('English');
   const dropdownOpen = ref<boolean>(false);
   const openMobileNav=ref<boolean>(false);
+  const { t, locale } = useI18n();
   
  
   const toggleDropdown = ():void =>{
@@ -144,32 +146,30 @@
   
   const selectLang = (lang:string) :void =>{
     selectedLang.value = lang === 'en' ? 'English' : 'Arabic';
+    locale.value = lang === 'en' ? '' : 'AR';
     dropdownOpen.value = false;
   }
 
 
-  const links : {src:string,linkName:string}[]=[
-    {
-       src:'/' ,
-       linkName:'Home'
-    },
-    {
-       src:'/about' ,
-       linkName:'About Us'
-    },
-    {
-       src:'/services' ,
-       linkName:'Our Services'
-    }, 
-    {
-       src:'/brands' ,
-       linkName:'Partener Brands'
-    }, 
-    {
-       src:'/contact' ,
-       linkName:'Contact Us'
-    }
-  ]
+ const links = computed(() => {
+  if (locale.value === 'AR') {
+    return [
+      { src: '/', linkName: t('links.home')}, 
+      { src: '/about', linkName: t('links.aboutUs')},
+      { src: '/services', linkName: t('links.services')},
+      { src: '/brands', linkName: t('links.partnerBrands')},
+      { src: '/contact', linkName: t('links.contactUs')},
+    ];
+  } else {
+    return [
+      { src: '/', linkName: 'Home' },
+      { src: '/about', linkName: 'About Us' },
+      { src: '/services', linkName: 'Our Services' },
+      { src: '/brands', linkName: 'Partner Brands' },
+      { src: '/contact', linkName: 'Contact Us' },
+    ];
+  }
+});
 </script>
   
 
