@@ -1,25 +1,24 @@
 <template>
   <main class="min-h-[100vh] overflow-x-hidden my-[15vh] md:my-[8vh] lg:my-0 container-fluid grid grid-cols-1 lg:grid-cols-3">
     
-    <aside class="w-full h-full relative">
-      <video
-        v-if="videoLoaded"
-        autoplay
-        muted
-        loop
-        playsinline
-        ref="videoElement"
-        class="w-full h-[60vh] lg:min-h-[100vh] object-cover transition-opacity duration-1000 opacity-100">
-        <source :src="homeData.header.video" type="video/mp4" />
-        <source :src="homeData.header.video" type="video/m4v" />
-        <p>Your browser does not support the video tag.</p>
-      </video>
+    <aside class="w-full relative">
+        <video
+          v-if="videoLoaded"
+          autoplay
+          muted
+          loop
+          playsinline
+          class="absolute w-full h-[60vh] md:min-h-[100vh] object-cover transition-opacity duration-1000 opacity-100">
+          <source :src="homeData.header.video" type="video/mp4" />
+          <source :src="homeData.header.video" type="video/m4v" />
+          <p>Your browser does not support the video tag.</p>
+        </video>
 
-      <BlurhashImg
-        v-if="!videoLoaded"
-        hash="LPJ**a-=RjM{~qIUoft7RjofM_t7"
-        class="w-full h-[60vh] lg:min-h-[100vh]  object-cover transition-opacity duration-1000 opacity-100 ease-out"
-        :class="{'opacity-0': videoLoaded}"/>
+        
+        <BlurhashImg
+          hash="LPJ**a-=RjM{~qIUoft7RjofM_t7"
+          class="absolute w-full h-[60vh] md:min-h-[100vh] object-cover transition-opacity duration-1000"
+          :class="{ 'opacity-100': !videoLoaded, 'opacity-0': videoLoaded }"/>
     </aside>
 
 
@@ -42,26 +41,24 @@
 
 
 
-    <aside class="w-full h-full hidden lg:block relative">
+    <aside class="w-full hidden lg:block relative">
       <img
         v-if="imageLoaded"
         :src="imageSrc"
         alt="right image"
-        class="w-full h-[60vh] lg:min-h-[100vh]  object-cover transition-opacity duration-1000 opacity-100"
-      />
+        class="absolute w-full h-[60vh] lg:min-h-[100vh] object-cover transition-opacity duration-1000 opacity-100"/>
 
+    
       <BlurhashImg
-        v-if="!imageLoaded"
         hash="L9OLr]~BXlI@JPx]tSDO%ggN_2OX"
-        class="w-full h-[60vh] lg:min-h-[100vh]  object-cover transition-opacity duration-1000 opacity-100 ease-out"
-        :class="{'opacity-0': imageLoaded}"
-      />
+        class="absolute w-full h-[60vh] lg:min-h-[100vh] object-cover transition-opacity duration-1000"
+        :class="{ 'opacity-100': !imageLoaded, 'opacity-0': imageLoaded }"/>
     </aside>
+
 
   </main>
 
 </template>
-
 
 <script setup lang="ts">
 import { ref, toRefs, onMounted } from 'vue';
@@ -73,7 +70,7 @@ const videoLoaded = ref(false);
 const imageLoaded = ref(false);
 const imageSrc = ref('');
 const { homeData } = toRefs(useHomeStore());
-const videoElement = ref(null);
+
 
 
 const checkIfMediaLoaded = () => {
