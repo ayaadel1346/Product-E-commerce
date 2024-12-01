@@ -104,7 +104,8 @@
                  placeholder="Enter your mail"/>
 
                 <button 
-                 class=" w-[150px] text-[18px] font-medium rounded-[25px] flex justify-center items-center bg-white  p-3" 
+                 class=" w-[150px] text-[18px] font-medium rounded-[25px] flex justify-center items-center
+                       bg-white hover:bg-darkGray hover:text-white  p-3 transition-all duration-300 ease-in-out" 
                  type="submit">
                  Send
                 </button>
