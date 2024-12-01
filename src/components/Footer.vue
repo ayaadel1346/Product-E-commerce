@@ -131,15 +131,20 @@
 
 
 <script setup lang="ts">
-import { ref, toRefs } from 'vue';
+import { ref, toRefs ,watch } from 'vue';
 import { useHomeStore } from '../stores/HeaderStore';
 import Snap from './icons/Snap.vue';
 import Instagram from './icons/Instagram.vue';
 import Facebook from './icons/Facebook.vue';
+import SweetAlert from 'sweetalert2';
 
 
-const { homeData } = toRefs(useHomeStore());
+const { homeData ,successMessage ,errorMessage} = toRefs(useHomeStore());
+
+const homeStore=useHomeStore();
+
 const email=ref<string>('');
+
 const links :{src:string,name:string}[]=[
 {
     src:'/',
@@ -175,7 +180,29 @@ const supportLinks:{src:string,name:string}[]=[
 ]
 
 
-const submitForm =()=>{
-console.log(email.value)
-}
+const submitForm = () => {
+  const formData = new FormData();
+  formData.append('email', email.value); 
+  homeStore.sentSubscribeData(formData); 
+
+};
+
+
+watch(successMessage, (newValue) => {
+  if (newValue === 'success') {
+    SweetAlert.fire({
+      title: 'Success!',
+      text: 'You have successfully subscribed.',
+      icon: 'success',
+      confirmButtonText: 'OK',
+    });
+  } else if (newValue === 'error') {
+    SweetAlert.fire({
+      title: 'Error!',
+      text: errorMessage.value || 'There was an error while subscribing. Please try again.',
+      icon: 'error',
+      confirmButtonText: 'OK',
+    });
+  }
+});
 </script>

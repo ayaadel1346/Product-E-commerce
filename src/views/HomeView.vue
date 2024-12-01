@@ -3,17 +3,20 @@
   <section 
     v-if="homeStore.loaderHome" 
     class="fixed inset-0 bg-white flex justify-center items-center z-50 overflow-hidden">
-    
     <Loader/>
   </section>
 
 
-  <div v-else>
-    <TopSection />
-    <AboutSection />
-    <ProductsSection />
-    <ContactSection/>
-  </div>
+  <section v-else>
+    <keep-alive>
+      <div>
+        <TopSection />
+        <AboutSection />
+        <ProductsSection />
+        <ContactSection/>
+      </div>
+    </keep-alive>
+  </section>
 
 </template>
 

@@ -1,12 +1,14 @@
 <template>
+
     <main class="container-fluid min-h-[100vh] overflow-x-hidden lg:mt-[8%] mt-3 grid grid-col lg:grid-cols-2">
+        
         <aside class="relative w-full h-[50vh] lg:h-full">
             <img 
                 v-if="imageLoaded"
                 :src="homeData.about.img"
                 alt="left about image"
-                class="w-full lg:w-5/6 h-[50vh] lg:h-full lg:min-h-[100vh] object-cover transition-opacity duration-1000 opacity-100"
-            />
+                class="w-full lg:w-5/6 h-[50vh] lg:h-full lg:min-h-[100vh] object-cover transition-opacity duration-1000 opacity-100"/>
+
 
             <BlurhashImg
                 v-if="!imageLoaded"
@@ -15,6 +17,7 @@
                 :class="{'opacity-0': imageLoaded}"
             />
         </aside>
+        
 
         <section class="lg:mx-auto mx-5 lg:py-[5%] py-[10%] w-full h-full min-h-[100vh] md:min-h-[75vh] lg:min-h-[100vh] flex flex-col justify-start items-start gap-[40px] lg:gap-[70px]">
             <h1 class="uppercase whitespace-nowrap text-[30px] md:text-[40px] leading-[20px] md:leading-[60px] lg:text-[8.2em] font-thin">
@@ -40,16 +43,21 @@
                 </ul>
             </div>
         </section>
+
     </main>
+
 </template>
+
 
 <script setup lang="ts">
 import { ref, toRefs, onMounted } from "vue";
 import { useHomeStore } from "../../stores/HeaderStore";
 import BlurhashImg from "@/components/BlurhashImg.vue";
 
+
 const { homeData } = toRefs(useHomeStore());
 const imageLoaded = ref(false);
+
 
 const checkIfImageLoaded = () => {
   if (homeData.value.about.img && homeData.value.about.img !== "") {
@@ -65,6 +73,7 @@ const checkIfImageLoaded = () => {
     };
   }
 };
+
 
 onMounted(() => {
   checkIfImageLoaded();
