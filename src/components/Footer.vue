@@ -185,6 +185,7 @@ const submitForm = () => {
   const formData = new FormData();
   formData.append('email', email.value); 
   homeStore.sentSubscribeData(formData); 
+  email.value='';
 
 };
 
