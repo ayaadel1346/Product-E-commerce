@@ -5,7 +5,11 @@ import axios from '../utils/axios';
 
 
 export const useHomeStore = defineStore('home', () => {
-    
+  
+  const successMessage=ref<string>('');
+
+  const errorMessage=ref<string>('');
+  
   const homeData = ref<PageData>({
     header: {
       desc: "",
@@ -71,6 +75,8 @@ export const useHomeStore = defineStore('home', () => {
     }
   };
 
+
+
   const fetchCategoryData = async (id:number) => {  
     try {
       const responseData = await axios.get<CategoryResponseData>(`/categories/${id}/products`);
@@ -81,7 +87,23 @@ export const useHomeStore = defineStore('home', () => {
     }
   };
 
-  return { fetchData, homeData, loaderHome ,fetchCategoryData,categoryLoader,categoryData};
+
+  const sentSubscribeData=async(formData:FormData)=>{
+    try {
+      await axios.post('/subscribers', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+       successMessage.value='success';
+    } catch (err:any) {
+      successMessage.value='error';
+      errorMessage.value=err.response.data.message;
+    }
+  }
+
+
+  return { fetchData, homeData, loaderHome ,fetchCategoryData,categoryLoader,categoryData ,sentSubscribeData ,successMessage ,errorMessage};
 });
 
      

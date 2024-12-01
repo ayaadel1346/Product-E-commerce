@@ -9,6 +9,7 @@
     --light-color:rgba(238, 170, 170, 0.279);
     --dark-gray:#918e8e;
     --light-button:#f6c8c8dc;
+    --scroll-color:#f9bebefd;
     --light-container:#ecc3c39c;
     --dark-link:#ed8585;
 }
@@ -56,3 +57,16 @@ body{
 }
   
   
+::-webkit-scrollbar {
+      width: 12px; 
+}
+    
+::-webkit-scrollbar-track {
+      background:white; 
+      border-radius: 10px; 
+}
+    
+::-webkit-scrollbar-thumb {
+      background:var(--scroll-color);
+      border-radius: 10px; 
+}
