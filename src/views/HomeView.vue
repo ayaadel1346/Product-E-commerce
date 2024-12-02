@@ -14,6 +14,7 @@
         <AboutSection />
         <ProductsSection />
         <ContactSection/>
+        <Footer/>
       </div>
     </keep-alive>
   </section>
@@ -21,22 +22,14 @@
 </template>
 
 <script setup>
-import { defineAsyncComponent, onMounted } from 'vue';
+import { onMounted } from 'vue';
 import TopSection from '@/components/home-components/TopSection.vue';
+import AboutSection from '@/components/home-components/AboutSection.vue';
+import ProductsSection from '@/components/home-components/ProductsSection.vue';
+import ContactSection from '@/components/home-components/ContactSection.vue';
+import Footer from '@/components/Footer.vue'
 import { useHomeStore } from '../stores/HeaderStore';
 import Loader from '../components/Loader.vue';
-
-const AboutSection = defineAsyncComponent(() =>
-  import('@/components/home-components/AboutSection.vue')
-);
-
-const ProductsSection = defineAsyncComponent(() =>
-  import('@/components/home-components/ProductsSection.vue')
-);
-
-const ContactSection = defineAsyncComponent(() =>
-  import('@/components/home-components/ContactSection.vue')
-);
 
 
 const homeStore = useHomeStore();
